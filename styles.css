@@ -93,7 +93,7 @@ body {
 .heart-photo {
     width: 160px;
     height: 160px;
-    object-fit: cover;
+    object-fit: contain;
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 28.72l-1.42-1.28C9.4 22.76 6 19.68 6 15.5 6 12.42 8.42 10 11.5 10c1.74 0 3.41.81 4.5 2.09C17.09 10.81 18.76 10 20.5 10 23.58 10 26 12.42 26 15.5c0 4.18-3.4 7.26-8.58 11.94L16 28.72z'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 28.72l-1.42-1.28C9.4 22.76 6 19.68 6 15.5 6 12.42 8.42 10 11.5 10c1.74 0 3.41.81 4.5 2.09C17.09 10.81 18.76 10 20.5 10 23.58 10 26 12.42 26 15.5c0 4.18-3.4 7.26-8.58 11.94L16 28.72z'/%3E%3C/svg%3E");
     -webkit-mask-size: 100% 100%;
@@ -145,6 +145,7 @@ body {
 
 .primary-btn {
     background: var(--primary-pink);
+    margin-top: 40px;
     color: white;
     border: none;
     padding: 15px 25px;
@@ -251,17 +252,7 @@ body {
 .timeline-img {
     width: 160px;
     height: 160px;
-    object-fit: cover;
-    margin-bottom: 20px;
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 28.72l-1.42-1.28C9.4 22.76 6 19.68 6 15.5 6 12.42 8.42 10 11.5 10c1.74 0 3.41.81 4.5 2.09C17.09 10.81 18.76 10 20.5 10 23.58 10 26 12.42 26 15.5c0 4.18-3.4 7.26-8.58 11.94L16 28.72z'/%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 28.72l-1.42-1.28C9.4 22.76 6 19.68 6 15.5 6 12.42 8.42 10 11.5 10c1.74 0 3.41.81 4.5 2.09C17.09 10.81 18.76 10 20.5 10 23.58 10 26 12.42 26 15.5c0 4.18-3.4 7.26-8.58 11.94L16 28.72z'/%3E%3C/svg%3E");
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-    background-color: var(--soft-pink);
+    border-radius: 10px;
 }
 
 .typewriter {
@@ -272,6 +263,23 @@ body {
     text-align: center;
     line-height: 1.6;
     font-weight: 500;
+}
+
+.romantic-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background-color: var(--primary-pink);
+    vertical-align: middle;
+    margin-left: 3px;
+    animation: blink 1s infinite;
+    box-shadow: 0 0 5px var(--primary-pink);
+    border-radius: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 /* Proposal Screen */

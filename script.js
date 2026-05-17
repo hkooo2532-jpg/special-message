@@ -55,14 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
         element.setAttribute('data-started', 'true');
         
         const text = element.getAttribute('data-text');
-        let i = 0;
         element.innerHTML = "";
         
+        const segmenter = window.Intl && Intl.Segmenter ? new Intl.Segmenter('my', { granularity: 'grapheme' }) : null;
+        const segments = segmenter ? Array.from(segmenter.segment(text)).map(s => s.segment) : text.split('');
+        
+        let i = 0;
         function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
+            if (i < segments.length) {
+                const currentText = segments.slice(0, i + 1).join('');
+                element.innerHTML = currentText + '<span class="romantic-cursor"></span>';
                 i++;
-                setTimeout(type, 100);
+                
+                // Variable speed for a more natural, smooth typing feel
+                const speed = Math.random() * 30 + 40; 
+                setTimeout(type, speed);
+            } else {
+                element.innerHTML = text; // Remove cursor when done
             }
         }
         type();
