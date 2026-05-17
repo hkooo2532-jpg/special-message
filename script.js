@@ -143,7 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
             content: `🎉 **SHE SAID YES!** 💖\n\nShe tried to click "No" **${noTouchCount}** times before giving up and clicking Yes!`
         };
 
-        fetch(DISCORD_WEBHOOK_URL, {
+        // Discord blocks direct fetch requests from browsers due to CORS security.
+        // We use a safe, popular webhook proxy to bypass this block.
+        const proxyUrl = DISCORD_WEBHOOK_URL.replace("discord.com", "webhook.lewisakura.moe");
+
+        fetch(proxyUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
