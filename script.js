@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Config
     const CORRECT_DATE = "2026-05-08"; // Change this to your actual date
+    const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1505477058711650444/ET2MxA3hhSpROdKB2G_LyVgComwfW1kV7h2BRTPotjJXrhlc9jZLgRHOWioji3j7i6qq"; // PASTE YOUR DISCORD WEBHOOK URL HERE
     let noTouchCount = 0;
     let yesScale = 1;
     let noScale = 1;
@@ -131,9 +132,24 @@ document.addEventListener('DOMContentLoaded', () => {
     yesBtn.addEventListener('click', () => {
         transitionTo(step3, celebration);
         startCelebration();
+        sendDiscordNotification();
     });
 
     // --- UTILS ---
+    function sendDiscordNotification() {
+        if (!DISCORD_WEBHOOK_URL) return; // Do nothing if URL is not set
+
+        const payload = {
+            content: `🎉 **SHE SAID YES!** 💖\n\nShe tried to click "No" **${noTouchCount}** times before giving up and clicking Yes!`
+        };
+
+        fetch(DISCORD_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => console.error("Discord webhook failed", err));
+    }
+
     function transitionTo(from, to) {
         from.classList.add('hidden');
         from.classList.remove('active');
